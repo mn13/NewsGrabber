@@ -2,7 +2,7 @@ import feedparser
 from abc import ABC, abstractmethod
 from newspaper import Article
 
-class News_Graber(ABC):
+class News_Grabber(ABC):
     @property
     def url(self):
         return self._url

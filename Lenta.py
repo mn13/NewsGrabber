@@ -1,6 +1,6 @@
-from News_Graber import News_Graber
+from News_Grabber import News_Grabber
 
-class Lenta(News_Graber):
+class Lenta(News_Grabber):
     def __init__(self):
         self._url = 'http://lenta.ru/rss'
 
