@@ -7,10 +7,9 @@ class News_Grabber(ABC):
     def url(self):
         return self._url
     
-    @abstractmethod
-    def news(self):
+    def news(self, limit = None):
         feed = feedparser.parse(self.url)
-        return [
+        res = [
             {
                 'title': item['title'],
                 'link': item['link'],
@@ -18,6 +17,11 @@ class News_Grabber(ABC):
                 'published': item['published']
             }
             for item in feed['items']]
+        if limit is None:
+            return res
+        elif limit > 0:
+            return res[0:limit]
+        return []
 
     def grub(self, url):
         article = Article(url, language='ru')
