@@ -1,14 +1,21 @@
 import feedparser
-from abc import ABC, abstractmethod
 from newspaper import Article
 
-class News_Grabber(ABC):
-    @property
-    def url(self):
-        return self._url
+class News_Grabber():
+
+    source ={ 
+        'interfax':'http://www.interfax.ru/rss.asp',
+        'lenta':'http://lenta.ru/rss',
+        'kommersant':'http://www.kommersant.ru/RSS/news.xml',
+        'm24':'http://www.m24.ru/rss.xml'
+    }
     
-    def news(self, limit = None):
-        feed = feedparser.parse(self.url)
+    def setNewUrl(self, url, name):
+        self.source[name] = url
+
+    def get(self, source, limit = None):
+        # exception
+        feed = feedparser.parse(self.source.get(source))
         res = [
             {
                 'title': item['title'],
